@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="24dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Insira seu nome"
+        android:inputType="textPersonName"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/edCpf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Insira o CPF"
+        android:inputType="textPersonName"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/edTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Insira o telefone"
+        android:inputType="textPersonName"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/btSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Salvar"
+        android:onClick="salvar" />
+
+</LinearLayout>
