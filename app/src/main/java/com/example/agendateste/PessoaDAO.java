@@ -3,16 +3,15 @@ package com.example.agendateste;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaDAO extends AppCompatActivity {
-    private  Conexao conexao;
+public class PessoaDAO {
+    private Conexao conexao;
     private SQLiteDatabase banco;
-    public PessoaDAO(R context){
+
+    public PessoaDAO(Context context) {
         conexao = new Conexao(context);
         banco = conexao.getWritableDatabase();
     }

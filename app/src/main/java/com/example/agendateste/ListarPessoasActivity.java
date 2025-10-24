@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.content.Context;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,22 +22,28 @@ import java.util.List;
 public class ListarPessoasActivity extends AppCompatActivity {
     private ListView listview;
     private PessoaDAO dao;
-    private ListView<Pessoa> pessoas;
+    private ListView pessoas;
     private List<Pessoa> pessoasFiltrados = new ArrayList<>();
+    private List<Pessoa> listaPessoas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_pessoa_activity);
-        listview = findViewById(R.id.lvPessoas);
-        dao = new PessoaDAO(this);
-        pessoas = dao.obterTodos();
-        pessoasFiltrados.addAll(pessoas);
-        ArrayAdapter<Pessoa> adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,pessoasFiltrados);
-        listview.setAdapter(adaptador);
-        registerForContextMenu(listview);
+        setContentView(R.layout.activity_listar_pessoa);
 
+        pessoas = findViewById(R.id.lvPessoas); // seu ListView no layout
+        PessoaDAO dao = new PessoaDAO(this);
+        List<Pessoa> lista = dao.obterTodos(); // dados do banco
+
+        ArrayAdapter<Pessoa> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                lista
+        );
+
+        pessoas.setAdapter(adapter);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -68,7 +75,7 @@ public class ListarPessoasActivity extends AppCompatActivity {
     }
     public void procuraPessoa(String nome){
         pessoasFiltrados.clear();
-        for(Pessoa p : pessoas){
+        for(Pessoa p : listaPessoas){
             if(p.getNome().toLowerCase().contains(nome.toLowerCase())){
                 pessoasFiltrados.add(p);
             }
@@ -91,7 +98,7 @@ public class ListarPessoasActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         pessoasFiltrados.remove(pessoaExcluir);
-                        pessoas.remove(pessoaExcluir);
+                        listaPessoas.remove(pessoaExcluir);
                         dao.excluir(pessoaExcluir);
                         listview.invalidateViews();
                     }
@@ -109,9 +116,9 @@ public class ListarPessoasActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        pessoas = dao.obterTodos();
+        listaPessoas = dao.obterTodos();
         pessoasFiltrados.clear();
-        pessoasFiltrados.addAll(pessoas);
+        pessoasFiltrados.addAll(listaPessoas);
         listview.invalidateViews();
     }
 }

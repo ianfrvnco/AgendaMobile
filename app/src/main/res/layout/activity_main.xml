@@ -11,7 +11,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/edNome"
+        android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Insira seu nome"
@@ -19,7 +19,7 @@
         android:ems="10" />
 
     <EditText
-        android:id="@+id/edCpf"
+        android:id="@+id/edtCpf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -28,7 +28,7 @@
         android:ems="10" />
 
     <EditText
-        android:id="@+id/edTelefone"
+        android:id="@+id/edtTelefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -37,7 +37,7 @@
         android:ems="10" />
 
     <Button
-        android:id="@+id/btSalvar"
+        android:id="@+id/btnSalvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
